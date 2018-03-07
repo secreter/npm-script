@@ -1,0 +1,26 @@
+{
+  "name": "hello-npm-script",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "lint:js": "eslint *.js --fix",
+    "lint:css": "stylelint *.less",
+    "lint:json": "jsonlint *.json --quiet",
+    "lint:markdown": "markdownlint --config .markdownlint.json *.md",
+    "test": "npm run lint:js && npm run lint:css && npm run lint:json && npm run lint:markdown && mocha tests/"
+  },
+  "keywords": [],
+  "author": "so <so@redream.cn>",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "eslint": "^4.18.2",
+    "eslint-plugin-react": "^7.7.0",
+    "jsonlint": "^1.6.3",
+    "markdownlint-cli": "^0.5.0",
+    "mocha": "^4.1.0",
+    "stylelint": "^8.4.0",
+    "stylelint-config-standard": "^17.0.0"
+  }
+}
