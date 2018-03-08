@@ -4,11 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "lint:js": "eslint *.js --fix",
+    "lint": "npm-run-all --parallel lint:*",
+    "lint:js": "eslint *.js \n # 添加注释，shell里写脚本一样，换行加#",
+    "lint:js:fix": "npm run lint:js -- --fix",
     "lint:css": "stylelint *.less",
-    "lint:json": "jsonlint *.json --quiet",
+    "lint:json": "jsonlint *.json --quiet \n # win7下文件通配符报错",
     "lint:markdown": "markdownlint --config .markdownlint.json *.md",
-    "test": "npm run lint:js && npm run lint:css && npm run lint:json && npm run lint:markdown && mocha tests/"
+    "test": "npm-run-all lint:js lint:css lint:json lint:markdown mocha  \n # 运行所有代码检查和单元测试",
+    
+    "test": "mocha tests/",
   },
   "keywords": [],
   "author": "so <so@redream.cn>",
@@ -20,6 +24,7 @@
     "jsonlint": "^1.6.3",
     "markdownlint-cli": "^0.5.0",
     "mocha": "^4.1.0",
+    "npm-run-all": "^4.1.2",
     "stylelint": "^8.4.0",
     "stylelint-config-standard": "^17.0.0"
   }
