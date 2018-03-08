@@ -5,14 +5,22 @@
   "main": "index.js",
   "scripts": {
     "lint": "npm-run-all --parallel lint:*",
-    "lint:js": "eslint *.js \n # 添加注释，shell里写脚本一样，换行加#",
+    "lint:js": "eslint *.js                                      \n # 添加注释，shell里写脚本一样，换行加#",
     "lint:js:fix": "npm run lint:js -- --fix",
     "lint:css": "stylelint *.less",
-    "lint:json": "jsonlint *.json --quiet \n # win7下文件通配符报错",
+    "lint:json": "jsonlint *.json --quiet                        \n # win7下文件通配符报错",
     "lint:markdown": "markdownlint --config .markdownlint.json *.md",
-    "test": "npm-run-all lint:js lint:css lint:json lint:markdown mocha  \n # 运行所有代码检查和单元测试",
-    
+    "precover": "rm -rf coverage                                 \n # 收集覆盖率之前把之前的覆盖率报告目录清理掉",
+    "cover": "nyc --reporter=html npm test                       \n # 直接调用 nyc，让其生成 html 格式的覆盖率报告",
+    "postcover": "rm -rf .nyc_output && opn coverage/index.html  \n # 清理掉临时文件，并且在浏览器中预览覆盖率报告",
     "test": "mocha tests/",
+    "pretest": "npm run lint                                     \n # 钩子，在test前运行所有代码检查"
+  },
+  "nyc": {
+    "exclude": [
+      "**/*.spec.js",
+      ".*.js"
+    ]
   },
   "keywords": [],
   "author": "so <so@redream.cn>",
@@ -25,6 +33,8 @@
     "markdownlint-cli": "^0.5.0",
     "mocha": "^4.1.0",
     "npm-run-all": "^4.1.2",
+    "nyc": "^11.4.1",
+    "opn-cli": "^3.1.0",
     "stylelint": "^8.4.0",
     "stylelint-config-standard": "^17.0.0"
   }
