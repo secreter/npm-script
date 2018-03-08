@@ -8,7 +8,7 @@
     "lint:js": "eslint *.js                                      \n # 添加注释，shell里写脚本一样，换行加#",
     "lint:js:fix": "npm run lint:js -- --fix",
     "lint:css": "stylelint *.less",
-    "lint:json": "jsonlint *.json --quiet                        \n # win7下文件通配符报错",
+    "lint:json": "jsonlint \"*.json\" --quiet                        \n # win7下文件通配符报错",
     "lint:markdown": "markdownlint --config .markdownlint.json *.md",
     "precover": "rm -rf coverage                                 \n # 收集覆盖率之前把之前的覆盖率报告目录清理掉",
     "cover": "nyc --reporter=html npm test                       \n # 直接调用 nyc，让其生成 html 格式的覆盖率报告",
@@ -27,14 +27,19 @@
   "license": "ISC",
   "devDependencies": {
     "chai": "^4.1.2",
+    "cpr": "^3.0.1",
     "eslint": "^4.18.2",
     "eslint-plugin-react": "^7.7.0",
+    "husky": "^0.14.3",
     "jsonlint": "^1.6.3",
+    "lint-staged": "^7.0.0",
+    "make-dir-cli": "^1.0.0",
     "markdownlint-cli": "^0.5.0",
     "mocha": "^4.1.0",
     "npm-run-all": "^4.1.2",
     "nyc": "^11.4.1",
     "opn-cli": "^3.1.0",
+    "rimraf": "^2.6.2",
     "stylelint": "^8.4.0",
     "stylelint-config-standard": "^17.0.0"
   }
